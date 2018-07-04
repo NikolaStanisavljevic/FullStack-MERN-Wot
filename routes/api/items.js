@@ -12,4 +12,14 @@ router.get('/', (req, res) => {
       .then(items => res.json(items))
   });
 
+// Get POST api/items
+// Create a Post
+router.post('/', (req, res) => {
+    const newItem = new Item({
+        name: req.body.name
+    });
+    newItem.save()
+        .then(item => res.json(item));
+  });
+
 module.exports = router;
