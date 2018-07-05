@@ -48,7 +48,7 @@ export class Main extends Component {
 
   render() {
     // Show Loading Screen
-    if (!this.state.loadingDone) {
+    if (this.state.loadingDone) {
       return (
         <div>
           <LoadingScreen clicked={this.clickHandler} />
@@ -62,12 +62,12 @@ export class Main extends Component {
             <section id="section-1">
               <BasicStats />
             </section>
-            {/* <section id="section-2">
+            <section id="section-2">
               <TankStatsByNation small={this.state.smallMobileTable} />
               <TankStatsByTier small={this.state.smallMobileTable} />
               <TankStatsByClass />
             </section>
-            <section id="section-3">
+            {/* <section id="section-3">
               <h3>Tanks Stats Summary by Class:</h3>
               <MiniList resize={this.state.smallTable} />
             </section>
@@ -103,7 +103,7 @@ export class Main extends Component {
               <li>
                 <a href="#section-5">section 5</a>
               </li>
-            </Scrollspy> */}
+            </Scrollspy>  */}
           </div>
         </div>
       );

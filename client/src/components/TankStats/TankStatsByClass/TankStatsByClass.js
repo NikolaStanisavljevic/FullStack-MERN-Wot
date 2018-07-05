@@ -5,22 +5,34 @@ import "./TankStatsByClass.css";
 import "chart.piecelabel.js";
 
 const tankStatsByClass = props => {
-  const data = props.tankStatsByClass;
+  const stats = props.syncStats;
 
-  const nations = data.map(res => {
-    return res.Class;
-  });
+  const data = stats.map(res => {
+    return res.tankStats.tankStatsByClass;
+  })
 
-  const games = data.map(res => {
-    return res.Games;
-  });
+// Destructuring nations array
+const nationsArr = []
+const nations = data.map(res => {
+  return res.map(res1 => {
+    nationsArr.push(res1.Class)
+  })
+});
+
+// Destructuring number of games played array
+const gamesArr = [];
+const games = data.map(res => {
+  return res.map(res1 =>{  
+   gamesArr.push(res1.Games)
+  })
+});
 
   const chartData = {
-    labels: [...nations],
+    labels: [...nationsArr],
     datasets: [
       {
         label: ["Battles By Class"],
-        data: [...games],
+        data: [...gamesArr],
         backgroundColor: [
           "#2C3E50",
           "#E74C3C",
@@ -64,7 +76,7 @@ const tankStatsByClass = props => {
 };
 
 const mapStateToProps = state => ({
-  tankStatsByClass: state.get.tankStats.tankStatsByClass
+  syncStats: state.get.syncStats
 });
 
 export default connect(mapStateToProps, {})(tankStatsByClass);

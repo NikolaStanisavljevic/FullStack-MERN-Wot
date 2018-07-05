@@ -6,22 +6,34 @@ import "chartjs-plugin-deferred";
 import "./TankStatsByTier.css";
 
 const tankStatsByTier = props => {
-  const data = props.tankStatsByTier;
+  const stats = props.syncStats;
 
-  const tier = data.map(res => {
-    return res.Tier;
-  });
+  const data = stats.map(res => {
+    return res.tankStats.tankStatsByTier;
+  })
 
-  const games = data.map(res => {
-    return res.Games;
-  });
+// Destructuring tier array
+const tierArr = []
+const tier = data.map(res => {
+  return res.map(res1 => {
+    tierArr.push(res1.Tier)
+  })
+});
+
+// Destructuring number of games played array
+const gamesArr = [];
+const games = data.map(res => {
+  return res.map(res1 =>{  
+   gamesArr.push(res1.Games)
+  })
+});
 
   const chartData = {
-    labels: [...tier],
+    labels: [...tierArr],
     datasets: [
       {
         label: ["Battles By Tier"],
-        data: [...games],
+        data: [...gamesArr],
         backgroundColor: [
           "#2C3E50",
           "#E74C3C",
@@ -70,7 +82,7 @@ const tankStatsByTier = props => {
 };
 
 const mapStateToProps = state => ({
-  tankStatsByTier: state.get.tankStats.tankStatsByTier
+  syncStats: state.get.syncStats
 });
 
 export default connect(mapStateToProps, {})(tankStatsByTier);
