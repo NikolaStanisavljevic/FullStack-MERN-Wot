@@ -14,13 +14,13 @@ const tankStatsByNation = props => {
   })
 
 // Destructuring nations array
-  const nationArr = []
+  const nationsArr = []
   const nations = data.map(res => {
     return res.map(res1 => {
-      nationArr.push(res1.Nation)
+      nationsArr.push(res1.Nation)
     })
   });
-  
+
 // Destructuring number of games played array
   const gamesArr = [];
   const games = data.map(res => {
@@ -30,7 +30,7 @@ const tankStatsByNation = props => {
   });
 
   const chartData = {
-    labels: [...nationArr],
+    labels: [...nationsArr],
     datasets: [
       {
         label: ["Battles By Nation"],

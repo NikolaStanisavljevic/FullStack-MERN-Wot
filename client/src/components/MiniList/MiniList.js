@@ -4,7 +4,16 @@ import { connect } from "react-redux";
 import { Table } from "reactstrap";
 
 const miniList = props => {
-  const data = props.miniList;
+  const stats = props.miniList;
+
+  // Destructuring data (find better way!)
+  const data = [];
+  const dara = stats.map(res => {
+    return res.miniListByClass.map(res => {
+      data.push(res);
+    })
+  })
+  
   // Make it responsive while resize window
   if (!props.resize) {
     return (
@@ -60,7 +69,7 @@ const miniList = props => {
 };
 
 const mapStateToProps = state => ({
-  miniList: state.get.miniListByClass
+  miniList: state.get.syncStats
 });
 
 export default connect(mapStateToProps, {} )(miniList);
