@@ -1,0 +1,28 @@
+.main {
+    font-family: 'Playfair Display', serif;
+    width: 75vw;
+    margin: 0 auto;
+    
+}
+
+.main h3 {
+    color:#212529;
+    font-size: 3rem;   
+    text-align: left;
+    padding: 4rem 0 2rem;
+    font-weight: 700;
+}
+
+.last {
+    margin-bottom: 6rem;
+}
+
+#section-4 {
+    padding-top: 8rem; 
+}
+
+@media (max-width: 900px) {
+    .main h3 {
+        font-size: 2rem;
+    }
+}

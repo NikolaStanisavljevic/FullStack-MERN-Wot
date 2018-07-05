@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const items = require('./routes/api/items');
 
 const app = express();
@@ -17,6 +18,8 @@ app.use(bodyParser.json());
     .then(()=> console.log('MongoDB Connected..'))
     .catch(err=> console.log(err));
     
+app.use(cors({origin: 'http://localhost:3000'}));
+
 // Use routes
 app.use('/api/items', items);
 

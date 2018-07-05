@@ -1,0 +1,14 @@
+.class {
+    position: relative;
+    height: 55vh;
+    width: 100%; 
+    margin: 6rem auto 12rem;
+    display: inline-block;
+}
+
+@media (max-width: 500px) {
+    .class {
+      height: 40vh;
+      margin: 3rem auto;
+    }
+  }

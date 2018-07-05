@@ -1,0 +1,22 @@
+.nation {
+    position: relative;
+    height: 65vh;
+    width: 50%; 
+    margin-bottom: 12rem auto;
+    display: inline-block;
+}
+
+@media (max-width: 1200px) {
+    .nation {
+      display: block;
+      width: 75vw;
+      margin: 0 0 6rem 0;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .nation {
+      height: 43vh;
+      margin: 0 0 2rem 0;
+    }
+  }
