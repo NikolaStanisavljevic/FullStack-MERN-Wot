@@ -5,22 +5,34 @@ import "chartjs-plugin-deferred";
 import "./AvgDmg.css";
 
 const avgDmg = props => {
-  const data = props.avgDmg;
+  const stats = props.syncStats;
 
-  const battles = data.map(res => {
-    return res.Battles;
+  const data = stats.map(res => {
+    return res.historyStats.avgDmg;
   });
 
+  // Destructuring battles array
+  const battlesArr = [];
+  const battles = data.map(res => {
+    return res.map(res1 => {
+      return battlesArr.push(res1.Battles);
+    });
+  });
+
+  // Destructuring average damage per game
+  const averageArr = [];
   const average = data.map(res => {
-    return res.Average;
+    return res.map(res1 => {
+      return averageArr.push(res1.Average);
+    });
   });
 
   const chartData = {
-    labels: [...battles],
+    labels: [...battlesArr],
     datasets: [
       {
         label: "Average Damage",
-        data: [...average],
+        data: [...averageArr],
         backgroundColor: "#3498DB"
       }
     ]
@@ -41,6 +53,10 @@ const avgDmg = props => {
             display: true,
             position: "top"
           },
+          tooltips: {
+            enabled: true,
+            displayColors: `false${average}${battles}`
+          },
           plugins: {
             deferred: {
               xOffset: 150, // defer until 150px of the canvas width are inside the viewport
@@ -55,7 +71,7 @@ const avgDmg = props => {
 };
 
 const mapStateToProps = state => ({
-  avgDmg: state.get.historyStats.avgDmg
+  syncStats: state.get.syncStats
 });
 
 export default connect(mapStateToProps, {})(avgDmg);

@@ -8,12 +8,12 @@ const miniList = props => {
 
   // Destructuring data (find better way!)
   const data = [];
-  const dara = stats.map(res => {
+  const dataList = stats.map(res => {
     return res.miniListByClass.map(res => {
-      data.push(res);
-    })
-  })
-  
+      return data.push(res);
+    });
+  });
+
   // Make it responsive while resize window
   if (!props.resize) {
     return (
@@ -44,7 +44,7 @@ const miniList = props => {
     );
   } else {
     return (
-      <Table responsive hover striped>
+      <Table responsive hover striped >
         <thead>
           <tr>
             <th>Type</th>
@@ -56,7 +56,7 @@ const miniList = props => {
         <tbody>
           {data.map((row, key) => (
             <tr key={key}>
-              <td className={'class'+ key}></td>
+              <td className={"class" + key} />
               <td>{row.Battles}</td>
               <td>{row.WN8}</td>
               <td>{row.WR}</td>
@@ -72,4 +72,7 @@ const mapStateToProps = state => ({
   miniList: state.get.syncStats
 });
 
-export default connect(mapStateToProps, {} )(miniList);
+export default connect(
+  mapStateToProps,
+  {}
+)(miniList);

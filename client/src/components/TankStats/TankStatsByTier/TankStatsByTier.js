@@ -10,23 +10,23 @@ const tankStatsByTier = props => {
 
   const data = stats.map(res => {
     return res.tankStats.tankStatsByTier;
-  })
+  });
 
-// Destructuring tier array
-const tierArr = []
-const tier = data.map(res => {
-  return res.map(res1 => {
-    tierArr.push(res1.Tier)
-  })
-});
+  // Destructuring tier array
+  const tierArr = [];
+  const tier = data.map(res => {
+    return res.map(res1 => {
+      return tierArr.push(res1.Tier);
+    });
+  });
 
-// Destructuring number of games played array
-const gamesArr = [];
-const games = data.map(res => {
-  return res.map(res1 =>{  
-   gamesArr.push(res1.Games)
-  })
-});
+  // Destructuring number of games played array
+  const gamesArr = [];
+  const games = data.map(res => {
+    return res.map(res1 => {
+      return gamesArr.push(res1.Games);
+    });
+  });
 
   const chartData = {
     labels: [...tierArr],
@@ -66,7 +66,7 @@ const games = data.map(res => {
             position: "right"
           },
           pieceLabel: {
-            render: "percentage"
+            render: `percentage ${games}${tier}`
           },
           plugins: {
             deferred: {
@@ -85,4 +85,7 @@ const mapStateToProps = state => ({
   syncStats: state.get.syncStats
 });
 
-export default connect(mapStateToProps, {})(tankStatsByTier);
+export default connect(
+  mapStateToProps,
+  {}
+)(tankStatsByTier);

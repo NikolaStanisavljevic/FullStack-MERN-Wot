@@ -71,7 +71,7 @@ export class Main extends Component {
               <h3>Tanks Stats Summary by Class:</h3>
               <MiniList resize={this.state.smallTable} />
             </section>
-            {/* <section id="section-4">
+            <section id="section-4">
               <h3>History Stats:</h3>
               <WinRate />
               <WN8 />
@@ -103,7 +103,7 @@ export class Main extends Component {
               <li>
                 <a href="#section-5">section 5</a>
               </li>
-            </Scrollspy> */}
+            </Scrollspy>
           </div>
         </div>
       );

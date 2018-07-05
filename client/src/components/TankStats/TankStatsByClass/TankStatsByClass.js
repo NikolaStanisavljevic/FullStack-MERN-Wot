@@ -9,23 +9,23 @@ const tankStatsByClass = props => {
 
   const data = stats.map(res => {
     return res.tankStats.tankStatsByClass;
-  })
+  });
 
-// Destructuring nations array
-const nationsArr = []
-const nations = data.map(res => {
-  return res.map(res1 => {
-    nationsArr.push(res1.Class)
-  })
-});
+  // Destructuring nations array
+  const nationsArr = [];
+  const nations = data.map(res => {
+    return res.map(res1 => {
+      return nationsArr.push(res1.Class);
+    });
+  });
 
-// Destructuring number of games played array
-const gamesArr = [];
-const games = data.map(res => {
-  return res.map(res1 =>{  
-   gamesArr.push(res1.Games)
-  })
-});
+  // Destructuring number of games played array
+  const gamesArr = [];
+  const games = data.map(res => {
+    return res.map(res1 => {
+      return gamesArr.push(res1.Games);
+    });
+  });
 
   const chartData = {
     labels: [...nationsArr],
@@ -60,7 +60,8 @@ const games = data.map(res => {
             fontSize: 25
           },
           legend: {
-            display: false
+            display: false,
+            text: `${nations}${games}`
           },
           plugins: {
             deferred: {

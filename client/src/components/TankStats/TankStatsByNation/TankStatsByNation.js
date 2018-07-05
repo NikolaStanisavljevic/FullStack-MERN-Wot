@@ -5,28 +5,27 @@ import "./TankStatsByNation.css";
 import "chart.piecelabel.js";
 import "chartjs-plugin-deferred";
 
-
 const tankStatsByNation = props => {
   const stats = props.syncStats;
-  
+
   const data = stats.map(res => {
     return res.tankStats.tankStatsByNation;
-  })
-
-// Destructuring nations array
-  const nationsArr = []
-  const nations = data.map(res => {
-    return res.map(res1 => {
-      nationsArr.push(res1.Nation)
-    })
   });
 
-// Destructuring number of games played array
+  // Destructuring nations array
+  const nationsArr = [];
+  const nations = data.map(res => {
+    return res.map(res1 => {
+      return nationsArr.push(res1.Nation);
+    });
+  });
+
+  // Destructuring number of games played array
   const gamesArr = [];
   const games = data.map(res => {
-    return res.map(res1 =>{  
-     gamesArr.push(res1.Games)
-    })
+    return res.map(res1 => {
+      return gamesArr.push(res1.Games);
+    });
   });
 
   const chartData = {
@@ -66,7 +65,7 @@ const tankStatsByNation = props => {
             position: "right"
           },
           pieceLabel: {
-            render: "percentage"
+            render: `percentage${nations}${games}`
           },
           plugins: {
             deferred: {
@@ -84,6 +83,5 @@ const tankStatsByNation = props => {
 const mapStateToProps = state => ({
   syncStats: state.get.syncStats
 });
-
 
 export default connect(mapStateToProps, {})(tankStatsByNation);

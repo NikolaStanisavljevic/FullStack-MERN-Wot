@@ -9,7 +9,7 @@ import WotLogo from "../../assets/images/bigBoss_WOTdecal_Web.png";
 
 class basicStats extends Component {
   componentWillMount() {
-    this.props.setStats(),
+    this.props.setStats()
     this.props.getStats();
   }
 

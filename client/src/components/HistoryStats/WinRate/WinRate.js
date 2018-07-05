@@ -5,22 +5,34 @@ import "./WinRate.css";
 import "chartjs-plugin-deferred";
 
 const winRate = props => {
-  const data = props.winRate;
+  const stats = props.syncStats;
 
-  const battles = data.map(res => {
-    return res.Battles;
+  const data = stats.map(res => {
+    return res.historyStats.winRate;
   });
 
+  // Destructuring battles array
+  const battlesArr = [];
+  const battles = data.map(res => {
+    return res.map(res1 => {
+      return battlesArr.push(res1.Battles);
+    });
+  });
+
+  // Destructuring number of games played array
+  const wRateArr = [];
   const wRate = data.map(res => {
-    return res.WinRate;
+    return res.map(res1 => {
+      return wRateArr.push(res1.WinRate);
+    });
   });
 
   const chartData = {
-    labels: [...battles],
+    labels: [...battlesArr],
     datasets: [
       {
         label: "Win Rate in %",
-        data: [...wRate],
+        data: [...wRateArr],
         backgroundColor: "#E74C3C"
       }
     ]
@@ -41,6 +53,10 @@ const winRate = props => {
             display: true,
             position: "top"
           },
+          tooltips: {
+            enabled: true,
+            displayColors: `false${wRate}${battles}`
+          },
           plugins: {
             deferred: {
               xOffset: 150, // defer until 150px of the canvas width are inside the viewport
@@ -55,7 +71,7 @@ const winRate = props => {
 };
 
 const mapStateToProps = state => ({
-  winRate: state.get.historyStats.winRate
+  syncStats: state.get.syncStats
 });
 
 export default connect(mapStateToProps, {})(winRate);
