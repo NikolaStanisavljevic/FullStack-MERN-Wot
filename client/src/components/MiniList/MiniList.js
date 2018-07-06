@@ -24,7 +24,7 @@ const miniList = props => {
             <th>Battles</th>
             <th>Victories</th>
             <th>Defeats</th>
-            <th>WN8</th>
+            <th className={"wn8" + dataList}>WN8</th>
             <th>Win Rate</th>
           </tr>
         </thead>
@@ -44,7 +44,7 @@ const miniList = props => {
     );
   } else {
     return (
-      <Table responsive hover striped >
+      <Table responsive hover striped>
         <thead>
           <tr>
             <th>Type</th>

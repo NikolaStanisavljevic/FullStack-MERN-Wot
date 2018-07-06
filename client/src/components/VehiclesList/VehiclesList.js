@@ -13,8 +13,14 @@ import SortFunctionPercent from "./Functions/SortFunctionPercent";
 import ColorFunctionWN8 from "./Functions/ColorFunctionWN8";
 
 const vehiclesList = props => {
-  const data = props.vehiclesStats;
-  const products = [...data];
+  const data = props.syncStats;
+  const products = [];
+
+  const dataList = data.map(res => {
+    return res.vehiclesStats.map(res => {
+      return products.push(res);
+    });
+  });
 
   if (!props.small) {
     var columns = [
@@ -124,7 +130,7 @@ const vehiclesList = props => {
       }
     ];
   } else if (props.mobile) {
-     columns = [
+    columns = [
       {
         dataField: "TankName",
         text: "Tank Name",
@@ -155,13 +161,13 @@ const vehiclesList = props => {
         sort: true,
         style: ColorFunctionWN8,
         headerTitle: function callback(column, colIndex) {
-          return colIndex === 14 ? "Custom Skill Metric" : null;
+          return colIndex === 14 ? "Custom Skill Metric" : dataList;
         },
         sortFunc: SortFunction
       }
     ];
   } else if (props.small) {
-     columns = [
+    columns = [
       {
         dataField: "TankName",
         text: "Tank Name",
@@ -217,7 +223,7 @@ const vehiclesList = props => {
 };
 
 const mapStateToProps = state => ({
-  vehiclesStats: state.get.vehiclesStats
+  syncStats: state.get.syncStats
 });
 
-export default connect(mapStateToProps, {} )(vehiclesList);
+export default connect(mapStateToProps, {})(vehiclesList);

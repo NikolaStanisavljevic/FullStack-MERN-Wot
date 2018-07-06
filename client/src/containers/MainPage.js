@@ -48,7 +48,7 @@ export class Main extends Component {
 
   render() {
     // Show Loading Screen
-    if (this.state.loadingDone) {
+    if (!this.state.loadingDone) {
       return (
         <div>
           <LoadingScreen clicked={this.clickHandler} />
@@ -87,7 +87,16 @@ export class Main extends Component {
             </section>
           </div>
           <div className="dotstyle dotstyle-fillup">
-            <Scrollspy items= {["section-1", "section-2", "section-3", "section-4", "section-5"]} currentClassName= "current">
+            <Scrollspy
+              items={[
+                "section-1",
+                "section-2",
+                "section-3",
+                "section-4",
+                "section-5"
+              ]}
+              currentClassName="current"
+            >
               <li>
                 <a href="#section-1">section 1</a>
               </li>
